@@ -17,6 +17,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           password: ${{ secrets.SSH_PASSWORD }}
+          key: ${{ secrets.SSH_KEY }}
           username: ${{ secrets.SSH_USERNAME }}
           source: "./"
           target: "/var/www/html/runapp"
@@ -29,7 +30,8 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           password: ${{ secrets.SSH_PASSWORD }}
-          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          username: ${{ secrets.SSH_USappleboy/scp-action@masterERNAME }}
           script: |
             set -e
             echo "Deploying application ..."
