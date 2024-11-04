@@ -13,38 +13,38 @@ jobs:
 
     steps:
     - name: Deploy Appgit
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          key: ${{ secrets.SSH_KEY }}
-          username: ${{ secrets.SSH_USERNAME }}
-          source: "./"
-          target: "/var/www/html/runapp"
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        key: ${{ secrets.SSH_KEY }}
+        username: ${{ secrets.SSH_USERNAME }}
+        source: "./"
+        target: "/var/www/html/runapp"
     - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.3
     - name: Configure and make the app live
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          key: ${{ secrets.SSH_KEY }}
-          username: ${{ secrets.SSH_USappleboy/scp-action@masterERNAME }}
-          script: |
-            set -e
-            echo "Deploying application ..."
-            cd /var/www/html
-            (php artisan down) || true
-            composer install --no-interaction --prefer-dist --optimize-autoloader
-            php artisan migrate --force
-            sudo chmod 777 -R /var/www/html/bootstrap/cache/
-            sudo chmod 777 -R /var/www/html/storage/
-            php artisan optimize
-            echo "" | sudo service php8.3-fpm reload
-            php artisan up
-            echo "Application deployed!"
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        key: ${{ secrets.SSH_KEY }}
+        username: ${{ secrets.SSH_USappleboy/scp-action@masterERNAME }}
+        script: |
+          set -e
+          echo "Deploying application ..."
+          cd /var/www/html
+          (php artisan down) || true
+          composer install --no-interaction --prefer-dist --optimize-autoloader
+          php artisan migrate --force
+          sudo chmod 777 -R /var/www/html/bootstrap/cache/
+          sudo chmod 777 -R /var/www/html/storage/
+          php artisan optimize
+          echo "" | sudo service php8.3-fpm reload
+          php artisan up
+          echo "Application deployed!"
 
 
     # - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
