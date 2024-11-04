@@ -31,7 +31,8 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         password: ${{ secrets.SSH_PASSWORD }}
         key: ${{ secrets.SSH_KEY }}
-        username: ${{ secrets.SSH_USappleboy/scp-action@masterERNAME }}
+        username: ${{ secrets.SSH_USER }}
+        # /scp-action@masterERNAME }}
         script: |
           set -e
           echo "Deploying application ..."
