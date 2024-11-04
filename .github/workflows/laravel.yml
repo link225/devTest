@@ -1,4 +1,4 @@
-name: Deploy Laravel Application to Production test
+name: Deploy Laravel Application to Production Test
 on:
   push:
     branches:
