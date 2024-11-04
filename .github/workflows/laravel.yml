@@ -1,4 +1,4 @@
-name: Deploy Laravel Application to Production
+name: Deploy Laravel Application to Production test
 on:
   push:
     branches:
@@ -22,5 +22,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           source: "./"
-          target: "/var/www/html/runapp"
+          target: "/var/www/html/"
           rm: true # Clean up target directory before copying
